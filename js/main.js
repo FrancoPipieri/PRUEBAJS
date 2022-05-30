@@ -1,4 +1,4 @@
-class Carrito{
+class Item{
   constructor(itemTitle,itemPrice,itemQuantity,itemColor,itemSize){
     this.itemTitle=itemTitle;
     this.itemPrice=itemPrice;
