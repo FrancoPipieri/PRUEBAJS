@@ -1,7 +1,7 @@
 class Item{
-  constructor(itemTitle,itemPrice,itemQuantity,itemColor,itemSize){
-    this.itemTitle=itemTitle;
-    this.itemPrice=itemPrice;
+  constructor(itemQuantity,itemColor,itemSize){
+    //this.itemTitle=itemTitle;
+    //this.itemPrice=itemPrice;
     this.itemQuantity=itemQuantity;
     this.itemColor=itemColor;
     this.itemSize=itemSize;
@@ -179,6 +179,9 @@ function cambioCantidad(event) {
 }
 
 function comprarButtonClicked() {
+  let compra = []
+  compra.push(new Item(itemQuantity,itemColor,itemSize))
+  console.log(compra)
   contenedorDelCarrito.innerHTML = '';
   console.log("Su Compra Fue un Exito")
   actualizarCarritoCompra();
