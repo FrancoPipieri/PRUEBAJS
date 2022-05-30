@@ -1,0 +1,177 @@
+*{
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+html{
+    min-height: 100%;
+    position: relative;
+}   
+
+body{
+    background-image: url(../img/fondo.webp);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+}
+
+header{
+    background: radial-gradient(circle, rgb(26, 26, 26) 0%, rgb(0, 0, 0) 70%);
+    display: block;
+}
+
+.head{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.head h1{
+    width: 90%;
+    padding-left: 34%;
+    padding-bottom: 5px;
+    align-self: center;
+    font-size: 2rem;
+    color: rgb(219, 167, 22);
+    line-height: 1;
+}
+
+.imgLogo{
+    width: 8%;
+    margin: 10px;
+    margin-left: 20px;
+    filter: drop-shadow(0 0 8px rgb(219, 167, 22))
+}
+/* Cards */
+.store{
+    margin: 20px;
+    padding: 8px;
+}
+.card{
+    width: 75%;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: rgba(50, 60, 60, 0.856);
+}
+.card-img-top{
+    margin: 5px;
+    padding: 10px;
+    width: 20%;
+    border-radius: 20px;
+}
+.card-body{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.valor{
+    line-height: 1.5;
+}
+.boton{
+    width: 30%;
+    margin-left: 65%;
+    background-color: rgb(238, 203, 151);
+    color: black;
+}
+.boton:hover{
+    background-color: aliceblue;
+    font-weight: bold;
+    border: 2px solid black;
+    transition: all 0.6s;
+
+}
+/* End Cards */
+/* Footer */
+.pie{
+    background: radial-gradient(circle, rgb(26, 26, 26) 0%, rgb(0, 0, 0) 70%);
+    flex-direction: column;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer_nav {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 8px;
+    justify-content: center;
+}
+  
+.pie__titulo{
+    color: rgb(219, 167, 22);
+    padding: 10px 0;
+    font-size: 1.2rem;
+    text-align: center; 
+}
+  
+.pie__enlace{
+    display: flex;
+    padding: 0 30px;
+    color: rgb(219, 167, 22);
+    font-size: 1rem;
+}
+
+.pie__enlace:hover{
+      font-weight: 600;
+      transition: all 0.2s;
+}
+
+.pie__enlace p{
+    align-self: center;
+    margin: 0%;
+}
+
+.pie__enlace img{
+    object-fit: scale-down;
+    margin: 3px;
+}
+/* End Footer */
+/* Carrito de Compras */
+#carritoCompras{
+    width: 70%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: rgba(181, 187, 185, 0.8);
+    color: rgb(47, 45, 40);
+}
+#carritoCompras h2{
+    line-height: 1;
+    font-size: 1.6rem;
+    font-weight: bold;
+    padding: 6px;
+}
+.contenidoCarrito{
+    margin: 0;
+    padding: 0;
+}
+.subTitle{
+    font-weight: bold;
+    line-height: 1.6;
+    color: rgb(47, 45, 40);
+}
+.btnCarrito{
+    margin-left: 30%;
+}
+.inputColor{
+    width: 100%;
+}
+.imagenEnCarrito{
+    width: 40%;
+    border-radius: 15px;
+    padding: 6px;
+}
+.comprarButton{
+    background-color: rgb(80, 134, 122);
+    border: 2px solid rgb(16, 104, 69);
+}
+.comprarButton:hover{
+    background-color: antiquewhite;
+    border: 2px solid gray;
+    transition: all 0.8s;
+}

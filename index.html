@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./css/style.css">
+
+    <title>Graffity Shop</title>
+</head>
+<body>
+    <header>
+        <section class="head">
+            <img src="./img/LogoCreador.png" alt="logo web" class="imgLogo">
+            <h1>Graffity Shop</h1>
+        </section>
+    </header>
+
+
+    <main class="d-flex row justify-content-around">
+
+        <!-- Items -->
+        <section class="store">
+        <div class="items">
+            <div class="card text-white item">
+                <img src="./img/Poscas.jpg" class="card-img-top item-image" alt="Uniposca">
+                <div class="card-body">
+                <h5 class="card-title p-1 item-title">Marker Uniposca</h5>
+                <p class="card-text">Marcador UniPosca, diseñado a base de tinta al agua. Pinta sobre cualquier superficie, y es muy resistente a la luz. Tiene la punta de poliester y puede ser de varias medidas: 0.5mm, 0.7mm, 1.3mm, 2.5mm, 8mm, 15mm. Tienen una amplia gama de colores.</p>
+                <div class="item-details">
+                    <h6 class="item-price valor">1100</h6>
+                    <button class="boton btn agregarACarrito">Agregar</button>
+                </div>
+                </div>
+            </div>
+
+            <div class="card text-white item">
+                <img src="./img/Grog.jpg" class="card-img-top item-image" alt="Grog">
+                <div class="card-body">
+                <h5 class="card-title p-1 item-title">Squeezer Grog</h5>
+                <p class="card-text">Squeezer Grog, diseñado para pintar sobre cualquier superficie, con tinta muy resistente a la luz, y de alto flujo, amplia variedad de tintas tanto a base de alcohol como de agua. Tienen punteras de tejido de alto rendimiento y tienen varias medidas:5mm, 10mm, 20mm, 25mm. Amplia gama de colores.</p>
+                <div class="item-details">
+                    <h6 class="item-price valor">1400</h6>
+                    <button class="boton btn agregarACarrito item-title">Agregar</button>
+                </div>
+            </div>
+            </div>
+
+            <div class="card text-white item">
+                <img src="./img/Markal.jpg" class="card-img-top item-image" alt="Markal">
+                <div class="card-body">
+                <h5 class="card-title p-1 item-title">Crayon Markal</h5>
+                <p class="card-text">Crayon Markal, la fórmula a base de pintura real tiene un rendimiento de marcaje superior en superficies aceitosas, heladas, húmedas, secas o frías, además de resistir los efectos de la intemperie y los rayos UV. Funciona en todas las superficies. Tiene un tamaño de 17mm. Amplia gama de colores.</p>
+                <div class="item-details">
+                    <h6 class="item-price valor">900</h6>
+                    <button class="boton btn agregarACarrito">Agregar</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        </section>
+
+        <!-- Carrito -->
+        <section id="carritoCompras">
+            <div class="container contenidoCarrito">
+                <h2 class="text-center">CARRITO</h2>
+                <hr>
+                <div class="row">
+                    <div class="col-3">
+                        <div class="shopping-cart-header">
+                            <h6 class="subTitle">Producto</h6>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="text-center shopping-cart-header">
+                            <h6 class="subTitle text-truncate">Precio</h6>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="text-center shopping-cart-header">
+                            <h6 class="subTitle text-truncate">Color</h6>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="text-center shopping-cart-header">
+                            <h6 class="subTitle">Cantidad</h6>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="text-center shopping-cart-header">
+                            <h6 class="subTitle">Tamaño</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carrito con Items -->
+                <div class="shopping-cart-items contenedorDelCarrito">
+                </div>
+
+                <!-- Total -->
+                <div class="row ">
+                    <div class="col-12">
+                        <div class="shopping-cart-total d-flex align-items-center justify-content-end">
+                            <p class="mb-0 col-2">Total</p>
+                            <p class="ml-5 mb-0 col-2 totalCarritoCompra">0$</p>
+                            <div class="toast ml-auto bg-info" role="alert" aria-live="assertive" aria-atomic="true"
+                                data-delay="2000">
+                                <div class="toast-header">
+                                    <strong class="mr-auto ml-1 text-secondary">Elemento en el carrito</strong>
+                                    <button type="button" class="btnCarrito ml-3 mb-1 col-8 close" data-dismiss="toast" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="toast-body text-white">
+                                    Se aumentó correctamente la cantidad
+                                </div>
+                            </div>
+                            <button class="btn ml-auto comprarButton" type="button" data-toggle="modal"
+                                data-target="#comprarModal">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+    <!-- ---------------------------- Footer -------------------------------- -->
+    <footer class="pie">
+        <nav>
+            <h4 class="pie__titulo">
+                Seguime En Redes Sociales:
+            </h4>
+            <nav class="footer_nav">
+                <a href="https://www.instagram.com" class="pie__enlace" target="_blank">
+                    <img src="./img/instagram.png" alt="instagram">
+                    <p>Instagram</p>
+                </a>
+                <a href="https://www.facebook.com/franco.pipieri.56/"class="pie__enlace" target="_blank">
+                    <img src="./img/facebook.png" alt="facebook">
+                    <p>Facebook</p>
+                </a>
+                <a href="https://soundcloud.com/cori-boyy"class="pie__enlace" target="_blank">
+                    <img src="./img/soundcloud.png" alt="soundcloud">
+                    <p>SoundCloud</p>
+                </a>
+            </nav>
+        </nav>
+    </footer>
+
+<!-- -------------------------------------- Scripts ------------------------------- -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <script defer src="./js/main.js"></script>
+
+</body>
+</html>
