@@ -8,9 +8,9 @@ class Item{
   }
 }
 
-let itemQuantity = document.getElementsByClassName('.cantidadItemsCarrito').textContent;
-let itemColor = document.getElementsByClassName('.colorItemsCarrito').textContent;
-let itemSize = document.getElementsByClassName('.tamañoItems').textContent;
+let itemQuantity = document.getElementsByClassName('.cantidadItemsCarrito').innerText;
+let itemColor = document.getElementsByClassName('.colorItemsCarrito').innerText;
+let itemSize = document.getElementsByClassName('.tamañoItems').innerText;
 
 const agregarArticuloACarrito = document.querySelectorAll('.agregarACarrito');
 agregarArticuloACarrito.forEach((agregarACarrito) => {
