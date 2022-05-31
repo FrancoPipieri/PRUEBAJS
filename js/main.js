@@ -1,16 +1,15 @@
 class Item{
-  constructor(itemQuantity,itemColor,itemSize){
-    //this.itemTitle=itemTitle;
-    //this.itemPrice=itemPrice;
+  constructor(itemTitle,itemPrice,itemQuantity,itemColor,itemSize){
+    this.itemTitle=itemTitle;
+    this.itemPrice=itemPrice;
     this.itemQuantity=itemQuantity;
     this.itemColor=itemColor;
     this.itemSize=itemSize;
   }
 }
+let compra = [];
 
-let itemQuantity = document.getElementsByClassName('.cantidadItemsCarrito').innerText;
-let itemColor = document.getElementsByClassName('.colorItemsCarrito').innerText;
-let itemSize = document.getElementsByClassName('.tamañoItems').innerText;
+let item = 0
 
 const agregarArticuloACarrito = document.querySelectorAll('.agregarACarrito');
 agregarArticuloACarrito.forEach((agregarACarrito) => {
@@ -131,6 +130,13 @@ function agregarItemAlCarrito(itemTitle, itemPrice, itemImage) {
   renglonCarrito.innerHTML = contenidoDelCarrito;
   contenedorDelCarrito.append(renglonCarrito);
 
+  let itemQuantity = document.getElementsByClassName('.cantidadItemsCarrito').value;
+  let itemColor = document.getElementsByClassName('.colorItemsCarrito').value;
+  let itemSize = document.getElementsByClassName('.tamañoItems').value;
+
+  item = new Item(itemTitle,itemPrice,itemQuantity,itemColor,itemSize)
+  compra.push(item)
+
   renglonCarrito
     .querySelector('.buttonDelete')
     .addEventListener('click', removeShoppingCartItem);
@@ -179,8 +185,6 @@ function cambioCantidad(event) {
 }
 
 function comprarButtonClicked() {
-  let compra = []
-  compra.push(new Item(itemQuantity,itemColor,itemSize))
   console.log(compra)
   contenedorDelCarrito.innerHTML = '';
   console.log("Su Compra Fue un Exito")
