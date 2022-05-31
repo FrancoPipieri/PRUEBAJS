@@ -8,8 +8,6 @@ class Item{
   }
 }
 let compra = [];
-let itemQuantity = document.getElementsByClassName('.cantidadItemsCarrito').value;
-let itemColor = document.getElementsByClassName('colorItemsCarrito').value;
 
 let item = 0
 
@@ -132,6 +130,8 @@ function agregarItemAlCarrito(itemTitle, itemPrice, itemImage) {
   renglonCarrito.innerHTML = contenidoDelCarrito;
   contenedorDelCarrito.append(renglonCarrito);
 
+  let itemQuantity = document.getElementsByClassName('.cantidadItemsCarrito').value;
+  let itemColor = document.getElementsByClassName('colorItemsCarrito').value;
   let itemTamaño = document.getElementsByClassName('.tamañoItems').textContent;
   let itemSize = itemTamaño
 
