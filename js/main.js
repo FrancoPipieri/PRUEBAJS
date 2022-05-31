@@ -1,15 +1,19 @@
 class Item{
-  constructor(itemTitle,itemPrice,itemQuantity,itemColor,itemSize){
+  constructor(itemTitle,itemPrice,itemImage,itemQuantity,itemColor,itemSize){
     this.itemTitle=itemTitle;
     this.itemPrice=itemPrice;
+    this.itemImage=itemImage;
     this.itemQuantity=itemQuantity;
     this.itemColor=itemColor;
     this.itemSize=itemSize;
   }
 }
-let compra = [];
+const carrito = JSON.parse(sessionStorage.getItem('carrito') || '[]')
 
-let item = 0
+let itemQuantity = document.getElementsByClassName('.cantidadItemsCarrito').textContent
+let itemColor = document.getElementsByClassName('.colorItemsCarrito').textContent
+let itemSize = document.getElementsByClassName('.tamañoItems').textContent
+
 
 const agregarArticuloACarrito = document.querySelectorAll('.agregarACarrito');
 agregarArticuloACarrito.forEach((agregarACarrito) => {
@@ -32,23 +36,37 @@ function agregarACarritoClicked(event) {
   const itemImage = item.querySelector('.item-image').src;
 
   agregarItemAlCarrito(itemTitle, itemPrice, itemImage);
+  mostrarCarrito();
 }
 
 let contenidoDelCarrito = 0;
+mostrarCarrito();
+
 function agregarItemAlCarrito(itemTitle, itemPrice, itemImage) {
+  let newItem = new Item(itemTitle, itemPrice, itemImage, '', '', '')
+  carrito.push(newItem)
+  sessionStorage.setItem('carrito', JSON.stringify(carrito))
+}
+
+
+function mostrarCarrito() {
+  document.querySelector('.contenedorDelCarrito').innerHTML = '';
+
+  carrito.forEach(producto => {
+
   const renglonCarrito = document.createElement('div');
 
-    if(itemTitle === "Marker Uniposca"){
+    if(producto.itemTitle === "Marker Uniposca"){
       contenidoDelCarrito = `<div class="row itemCarritoCompras">
         <div class="col-3">
           <div class="shopping-cart-item d-flex align-items-center h-100 border-bottom">
-            <img src=${itemImage} class="imagenEnCarrito">
-            <h6 class="shopping-cart-item-title tituloDeItem text-truncate ml-3 mb-0">${itemTitle}</h6>
+            <img src=${producto.itemImage} class="imagenEnCarrito">
+            <h6 class="shopping-cart-item-title tituloDeItem text-truncate ml-3 mb-0">${producto.itemTitle}</h6>
           </div>
         </div>
         <div class="col-2">
           <div class="shopping-cart-price d-flex justify-content-center align-items-center h-100 border-bottom">
-            <p class="item-price mb-0 precioItemCarrito">${itemPrice}</p>
+            <p class="item-price mb-0 precioItemCarrito">${producto.itemPrice}</p>
           </div>
         </div>
         <div class="col-2 align-self-center">
@@ -69,17 +87,17 @@ function agregarItemAlCarrito(itemTitle, itemPrice, itemImage) {
           </div>
         </div>
       </div>`;}
-    else if(itemTitle === "Squeezer Grog"){
+    else if(producto.itemTitle === "Squeezer Grog"){
       contenidoDelCarrito = `<div class="row itemCarritoCompras">
       <div class="col-3">
           <div class="shopping-cart-item d-flex align-items-center h-100 border-bottom">
-              <img src=${itemImage} class="imagenEnCarrito">
-              <h6 class="shopping-cart-item-title tituloDeItem text-truncate ml-3 mb-0">${itemTitle}</h6>
+              <img src=${producto.itemImage} class="imagenEnCarrito">
+              <h6 class="shopping-cart-item-title tituloDeItem text-truncate ml-3 mb-0">${producto.itemTitle}</h6>
           </div>
       </div>
       <div class="col-2">
           <div class="shopping-cart-price d-flex justify-content-center align-items-center h-100 border-bottom">
-              <p class="item-price mb-0 precioItemCarrito">${itemPrice}</p>
+              <p class="item-price mb-0 precioItemCarrito">${producto.itemPrice}</p>
           </div>
       </div>
       <div class="col-2 align-self-center">
@@ -99,17 +117,17 @@ function agregarItemAlCarrito(itemTitle, itemPrice, itemImage) {
           </div>
       </div>
       </div>`;  
-    }else if(itemTitle === "Crayon Markal"){
+    }else if(producto.itemTitle === "Crayon Markal"){
       contenidoDelCarrito = `<div class="row itemCarritoCompras">
       <div class="col-3">
           <div class="shopping-cart-item d-flex align-items-center h-100 border-bottom">
-              <img src=${itemImage} class="imagenEnCarrito">
-              <h6 class="shopping-cart-item-title tituloDeItem text-truncate ml-3 mb-0">${itemTitle}</h6>
+              <img src=${producto.itemImage} class="imagenEnCarrito">
+              <h6 class="shopping-cart-item-title tituloDeItem text-truncate ml-3 mb-0">${producto.itemTitle}</h6>
           </div>
       </div>
       <div class="col-2">
           <div class="shopping-cart-price d-flex justify-content-center align-items-center h-100 border-bottom">
-              <p class="item-price mb-0 precioItemCarrito">${itemPrice}</p>
+              <p class="item-price mb-0 precioItemCarrito">${producto.itemPrice}</p>
           </div>
       </div>
       <div class="col-2 align-self-center">
@@ -130,14 +148,6 @@ function agregarItemAlCarrito(itemTitle, itemPrice, itemImage) {
   renglonCarrito.innerHTML = contenidoDelCarrito;
   contenedorDelCarrito.append(renglonCarrito);
 
-  let itemQuantity = document.getElementsByClassName('.cantidadItemsCarrito').value;
-  let itemColor = document.getElementsByClassName('colorItemsCarrito').value;
-  let itemTamaño = document.getElementsByClassName('.tamañoItems').textContent;
-  let itemSize = itemTamaño
-
-
-  item = new Item(itemTitle,itemPrice,itemQuantity,itemColor,itemSize)
-  compra.push(item)
 
   renglonCarrito
     .querySelector('.buttonDelete')
@@ -148,6 +158,7 @@ function agregarItemAlCarrito(itemTitle, itemPrice, itemImage) {
     .addEventListener('change', cambioCantidad);
 
   actualizarCarritoCompra();
+  })
 }
 
 function actualizarCarritoCompra() {
@@ -176,8 +187,12 @@ function actualizarCarritoCompra() {
 
 function removeShoppingCartItem(event) {
   const buttonClicked = event.target;
-  buttonClicked.closest('.itemCarritoCompras').remove();
-  actualizarCarritoCompra();
+  const index = buttonClicked.dataset.productIndex;
+  buttonClicked.closest('.itemCarritoCompras').parentNode.remove();
+  carrito.splice(index, 1);
+  mostrarCarrito();
+  sessionStorage.setItem('carrito', JSON.stringify(carrito));
+  actualizarCarritoCompra()
 }
 
 function cambioCantidad(event) {
