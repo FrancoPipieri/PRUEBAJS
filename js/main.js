@@ -8,6 +8,8 @@ class Item{
   }
 }
 let compra = [];
+let itemQuantity = document.getElementsByClassName('.cantidadItemsCarrito').value;
+let itemColor = document.getElementsByClassName('colorItemsCarrito').value;
 
 let item = 0
 
@@ -59,11 +61,11 @@ function agregarItemAlCarrito(itemTitle, itemPrice, itemImage) {
               <input class="shopping-cart-quantity-input cantidadItemsCarrito col-4 ms-3" type="number" value="1">
 
             <select class="col-4 ms-3 align-self-center tamañoItems">
-              <option value="1.7mm">1.7mm</option>
-              <option value="1.3">1.3mm</option>
-              <option value="2.5">2.5mm</option>
-              <option value="8">8mm</option>
-              <option value="15">15mm</option>
+              <option>1.7mm</option>
+              <option>1.3mm</option>
+              <option>2.5mm</option>
+              <option>8mm</option>
+              <option>15mm</option>
             </select>
               <button class="btnBorrar btn btn-danger buttonDelete col-2" type="button">X</button>
           </div>
@@ -90,10 +92,10 @@ function agregarItemAlCarrito(itemTitle, itemPrice, itemImage) {
               <input class="shopping-cart-quantity-input cantidadItemsCarrito col-4 ms-3" type="number" value="1">
 
               <select class="col-4 ms-3 align-self-center tamañoItems">
-              <option value="5mm">5mm</option>
-              <option value="10">10mm</option>
-              <option value="20">20mm</option>
-              <option value="25">25mm</option>
+              <option>5mm</option>
+              <option>10mm</option>
+              <option>20mm</option>
+              <option>25mm</option>
               </select>
               <button class="btnBorrar btn btn-danger buttonDelete col-2" type="button">X</button>
           </div>
@@ -120,7 +122,7 @@ function agregarItemAlCarrito(itemTitle, itemPrice, itemImage) {
               <input class="shopping-cart-quantity-input cantidadItemsCarrito col-4 ms-3" type="number" value="1">
 
               <select class="col-4 ms-3 tamañoItems">
-              <option value="17mm">17mm</option>
+              <option>17mm</option>
               </select>
               <button class="btnBorrar btn btn-danger buttonDelete col-2" type="button">X</button>
           </div>
@@ -130,9 +132,9 @@ function agregarItemAlCarrito(itemTitle, itemPrice, itemImage) {
   renglonCarrito.innerHTML = contenidoDelCarrito;
   contenedorDelCarrito.append(renglonCarrito);
 
-  let itemQuantity = document.getElementsByClassName('.cantidadItemsCarrito').value;
-  let itemColor = document.getElementsByClassName('.colorItemsCarrito').value;
-  let itemSize = document.getElementsByClassName('.tamañoItems').value;
+  let itemTamaño = document.getElementsByClassName('.tamañoItems').textContent;
+  let itemSize = itemTamaño
+
 
   item = new Item(itemTitle,itemPrice,itemQuantity,itemColor,itemSize)
   compra.push(item)
