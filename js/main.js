@@ -10,9 +10,9 @@ class Item{
 }
 const carrito = JSON.parse(sessionStorage.getItem('carrito') || '[]')
 
-let itemQuantity = document.getElementsByClassName('.cantidadItemsCarrito').textContent
-let itemColor = document.getElementsByClassName('.colorItemsCarrito').textContent
-let itemSize = document.getElementsByClassName('.tamañoItems').textContent
+let itemQuantity = document.getElementsByClassName('.cantidadItemsCarrito').value;
+let itemColor = document.getElementsByClassName('.colorItemsCarrito').value;
+let itemSize = document.getElementsByClassName('.tamañoItems').value;
 
 
 const agregarArticuloACarrito = document.querySelectorAll('.agregarACarrito');
@@ -202,7 +202,6 @@ function cambioCantidad(event) {
 }
 
 function comprarButtonClicked() {
-  console.log(compra)
   contenedorDelCarrito.innerHTML = '';
   console.log("Su Compra Fue un Exito")
   actualizarCarritoCompra();
