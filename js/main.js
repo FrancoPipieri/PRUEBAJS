@@ -10,23 +10,23 @@ class Item{
 }
 const carrito = JSON.parse(sessionStorage.getItem('carrito') || '[]')
 
-let itemQuantity = document.getElementsByClassName('.cantidadItemsCarrito').value;
-let itemColor = document.getElementsByClassName('.colorItemsCarrito').value;
-let itemSize = document.getElementsByClassName('.tamañoItems').value;
+let itemQuantity = document.getElementsByClassName('.cantidadItemsCarrito');
+let itemColor = document.getElementsByClassName('.colorItemsCarrito');
+let itemSize = document.getElementsByClassName('.tamañoItems');
 
-
+// Boton de seleccion
 const agregarArticuloACarrito = document.querySelectorAll('.agregarACarrito');
 agregarArticuloACarrito.forEach((agregarACarrito) => {
   agregarACarrito.addEventListener('click', agregarACarritoClicked);
 });
 
+// Boton de Comprar
 const comprarButton = document.querySelector('.comprarButton');
 comprarButton.addEventListener('click', comprarButtonClicked);
 
-const contenedorDelCarrito = document.querySelector(
-  '.contenedorDelCarrito'
-);
+const contenedorDelCarrito = document.querySelector('.contenedorDelCarrito');
 
+// Seleccionar el Item a Comprar
 function agregarACarritoClicked(event) {
   const button = event.target;
   const item = button.closest('.item');
@@ -41,14 +41,15 @@ function agregarACarritoClicked(event) {
 
 let contenidoDelCarrito = 0;
 mostrarCarrito();
-
+//Agregar el item seleccionado al carrito
 function agregarItemAlCarrito(itemTitle, itemPrice, itemImage) {
-  let newItem = new Item(itemTitle, itemPrice, itemImage, '', '', '')
-  carrito.push(newItem)
-  sessionStorage.setItem('carrito', JSON.stringify(carrito))
+
+  let newItem = new Item(itemTitle, itemPrice, itemImage, '', '', '');
+  carrito.push(newItem);
+  sessionStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
-
+// Mostrar carrito de compras
 function mostrarCarrito() {
   document.querySelector('.contenedorDelCarrito').innerHTML = '';
 
@@ -161,6 +162,7 @@ function mostrarCarrito() {
   })
 }
 
+// Actualizar precios
 function actualizarCarritoCompra() {
   let total = 0;
   const totalCarritoCompra = document.querySelector('.totalCarritoCompra');
