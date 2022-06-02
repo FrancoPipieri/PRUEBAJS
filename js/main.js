@@ -1,5 +1,6 @@
 class Item{
-  constructor(itemTitle,itemPrice,itemImage,itemQuantity,itemColor,itemSize){
+  constructor(id,itemTitle,itemPrice,itemImage,itemQuantity,itemColor,itemSize){
+    this.id=id;
     this.itemTitle=itemTitle;
     this.itemPrice=itemPrice;
     this.itemImage=itemImage;
@@ -8,11 +9,9 @@ class Item{
     this.itemSize=itemSize;
   }
 }
-const carrito = JSON.parse(sessionStorage.getItem('carrito') || '[]')
+let carrito = JSON.parse(sessionStorage.getItem('carrito') || '[]')
 
-let itemQuantity = document.getElementsByClassName('.cantidadItemsCarrito');
-let itemColor = document.getElementsByClassName('.colorItemsCarrito');
-let itemSize = document.getElementsByClassName('.tamañoItems');
+
 
 // Boton de seleccion
 const agregarArticuloACarrito = document.querySelectorAll('.agregarACarrito');
@@ -37,22 +36,37 @@ function agregarACarritoClicked(event) {
 
   agregarItemAlCarrito(itemTitle, itemPrice, itemImage);
   mostrarCarrito();
+  let itemQuantity = document.querySelectorAll('.cantidadItemsCarrito');
+  let itemColor = document.querySelectorAll('.colorItemsCarrito');
+  let itemSize = document.querySelectorAll('.sizeItems');
+  
+  itemQuantity.forEach((elemento)=>{
+    elemento.addEventListener('change', modificarCantidad)
+  })
+  itemColor.forEach((elemento)=>{
+    elemento.addEventListener('change', modificarColor)
+  })
+  itemSize.forEach((elemento)=>{
+    elemento.addEventListener('change', modificarSize)
+  })
 }
 
 let contenidoDelCarrito = 0;
 mostrarCarrito();
 //Agregar el item seleccionado al carrito
 function agregarItemAlCarrito(itemTitle, itemPrice, itemImage) {
-
-  let newItem = new Item(itemTitle, itemPrice, itemImage, '', '', '');
+  let id = 0;
+  if(carrito.length >0){
+    id = carrito[carrito.length-1].id+1
+  }
+  let newItem = new Item(id,itemTitle, itemPrice, itemImage, "1", null, null);
   carrito.push(newItem);
-  sessionStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
 // Mostrar carrito de compras
 function mostrarCarrito() {
   document.querySelector('.contenedorDelCarrito').innerHTML = '';
-
+   
   carrito.forEach(producto => {
 
   const renglonCarrito = document.createElement('div');
@@ -71,13 +85,14 @@ function mostrarCarrito() {
           </div>
         </div>
         <div class="col-2 align-self-center">
-        <input class="inputColor colorItemsCarrito" type="text">
+        <input id="color-${producto.id}" class="inputColor colorItemsCarrito" type="text">
         </div>
         <div class="col-5">
           <div class="shopping-cart-quantity d-flex justify-content-between align-items-center h-100 border-bottom">
-              <input class="shopping-cart-quantity-input cantidadItemsCarrito col-4 ms-3" type="number" value="1">
+              <input  id="cant-${producto.id}" class="shopping-cart-quantity-input cantidadItemsCarrito col-4 ms-3" type="number" value="1">
 
-            <select class="col-4 ms-3 align-self-center tamañoItems">
+            <select id="size-${producto.id}" class="col-4 ms-3 align-self-center sizeItems">
+              <option>Seleccione una Opcion</option>
               <option>1.7mm</option>
               <option>1.3mm</option>
               <option>2.5mm</option>
@@ -102,13 +117,14 @@ function mostrarCarrito() {
           </div>
       </div>
       <div class="col-2 align-self-center">
-      <input class="inputColor colorItemsCarrito" type="text">
+      <input id="color-${producto.id}" class="inputColor colorItemsCarrito" type="text">
       </div>
       <div class="col-5 ">
           <div class="shopping-cart-quantity d-flex justify-content-between align-items-center h-100 border-bottom">
-              <input class="shopping-cart-quantity-input cantidadItemsCarrito col-4 ms-3" type="number" value="1">
+              <input id="cant-${producto.id}" class="shopping-cart-quantity-input cantidadItemsCarrito col-4 ms-3" type="number" value="1">
 
-              <select class="col-4 ms-3 align-self-center tamañoItems">
+              <select id="size-${producto.id}" class="col-4 ms-3 align-self-center sizeItems">
+              <option>Seleccione una Opcion</option>
               <option>5mm</option>
               <option>10mm</option>
               <option>20mm</option>
@@ -132,13 +148,14 @@ function mostrarCarrito() {
           </div>
       </div>
       <div class="col-2 align-self-center">
-      <input class="inputColor colorItemsCarrito" type="text">
+      <input id="color-${producto.id}" class="inputColor colorItemsCarrito" type="text">
       </div>
       <div class="col-5">
           <div class="shopping-cart-quantity d-flex justify-content-between align-items-center h-100 border-bottom">
-              <input class="shopping-cart-quantity-input cantidadItemsCarrito col-4 ms-3" type="number" value="1">
+              <input id="cant-${producto.id}" class="shopping-cart-quantity-input cantidadItemsCarrito col-4 ms-3" type="number" value="1">
 
-              <select class="col-4 ms-3 tamañoItems">
+              <select id="size-${producto.id}" class="col-4 ms-3 sizeItems">
+              <option>Seleccione una Opcion</option>
               <option>17mm</option>
               </select>
               <button class="btnBorrar btn btn-danger buttonDelete col-2" type="button">X</button>
@@ -153,10 +170,6 @@ function mostrarCarrito() {
   renglonCarrito
     .querySelector('.buttonDelete')
     .addEventListener('click', removeShoppingCartItem);
-
-  renglonCarrito
-    .querySelector('.cantidadItemsCarrito')
-    .addEventListener('change', cambioCantidad);
 
   actualizarCarritoCompra();
   })
@@ -197,14 +210,45 @@ function removeShoppingCartItem(event) {
   actualizarCarritoCompra()
 }
 
-function cambioCantidad(event) {
-  const input = event.target;
-  input.value <= 0 ? (input.value = 1) : null;
+function comprarButtonClicked() {
+  sessionStorage.setItem("carrito", JSON.stringify(carrito));
+  carrito = [];
+  contenedorDelCarrito.innerHTML = '';
+  console.log("Su Compra Fue un Exito");
   actualizarCarritoCompra();
 }
 
-function comprarButtonClicked() {
-  contenedorDelCarrito.innerHTML = '';
-  console.log("Su Compra Fue un Exito")
-  actualizarCarritoCompra();
+function modificarCantidad(event){
+  if(event.target.value <=0){
+    event.target.value = 1
+  }
+  let item = carrito.findIndex((elemento)=>{
+    return `cant-${elemento.id}` == event.target.id
+  })
+ 
+  carrito[item].itemQuantity = event.target.value;
+  sessionStorage.setItem("carrito", JSON.stringify(carrito));
+  actualizarCarritoCompra()
+}
+
+function modificarColor(event){
+
+  let item = carrito.findIndex((elemento)=>{
+    return `color-${elemento.id}` == event.target.id
+  })
+  console.log(item)
+  carrito[item].itemColor = event.target.value;
+  sessionStorage.setItem("carrito", JSON.stringify(carrito));
+  actualizarCarritoCompra()
+}
+
+function modificarSize(event){
+
+  let item = carrito.findIndex((elemento)=>{
+    return `size-${elemento.id}` == event.target.id
+  })
+  console.log(item)
+  carrito[item].itemSize = event.target.value;
+  sessionStorage.setItem("carrito", JSON.stringify(carrito));
+  actualizarCarritoCompra()
 }
