@@ -9,8 +9,9 @@ class Item{
     this.itemSize=itemSize;
   }
 }
-let carrito = JSON.parse(sessionStorage.getItem('carrito') || '[]')
 
+
+let carrito = JSON.parse(sessionStorage.getItem('carrito') || '[]')
 
 
 // Boton de seleccion
@@ -36,10 +37,12 @@ function agregarACarritoClicked(event) {
 
   agregarItemAlCarrito(itemTitle, itemPrice, itemImage);
   mostrarCarrito();
+  // Ejecutar inputs
+
   let itemQuantity = document.querySelectorAll('.cantidadItemsCarrito');
   let itemColor = document.querySelectorAll('.colorItemsCarrito');
   let itemSize = document.querySelectorAll('.sizeItems');
-  
+
   itemQuantity.forEach((elemento)=>{
     elemento.addEventListener('change', modificarCantidad)
   })
@@ -53,7 +56,9 @@ function agregarACarritoClicked(event) {
 
 let contenidoDelCarrito = 0;
 mostrarCarrito();
+
 //Agregar el item seleccionado al carrito
+
 function agregarItemAlCarrito(itemTitle, itemPrice, itemImage) {
   let id = 0;
   if(carrito.length >0){
@@ -200,6 +205,7 @@ function actualizarCarritoCompra() {
   totalCarritoCompra.innerHTML = `   ${total.toFixed(2)} $`;
 }
 
+// Eliminar Item del Carrito
 function removeShoppingCartItem(event) {
   const buttonClicked = event.target;
   const index = buttonClicked.dataset.productIndex;
@@ -210,45 +216,62 @@ function removeShoppingCartItem(event) {
   actualizarCarritoCompra()
 }
 
+// Boton Comprar
 function comprarButtonClicked() {
-  sessionStorage.setItem("carrito", JSON.stringify(carrito));
-  carrito = [];
-  contenedorDelCarrito.innerHTML = '';
-  console.log("Su Compra Fue un Exito");
-  actualizarCarritoCompra();
+
+  Swal.fire({
+    title:'Confirmar Compra',
+    text: 'Desea concluir la compra?',
+    icon: 'success',
+    confirmButtonText: 'Finalizar',
+    cancelButtonText: 'Seguir Comprando',
+    showCancelButton: true,
+}).then((result)=>{
+    if(result.isConfirmed)
+    {
+      sessionStorage.setItem("carrito", JSON.stringify(carrito));
+      carrito = [];
+      contenedorDelCarrito.innerHTML = '';
+      actualizarCarritoCompra();
+    }
+})
+actualizarCarritoCompra();
 }
 
+// Modificar Inputs del Carrito
 function modificarCantidad(event){
-  if(event.target.value <=0){
-    event.target.value = 1
-  }
+  let input = event.target;
+  input.value <=0 ? (input.value=1) : null;
+
   let item = carrito.findIndex((elemento)=>{
-    return `cant-${elemento.id}` == event.target.id
+    return `cant-${elemento.id}` == input.id
   })
  
-  carrito[item].itemQuantity = event.target.value;
+  carrito[item].itemQuantity = input.value;
   sessionStorage.setItem("carrito", JSON.stringify(carrito));
   actualizarCarritoCompra()
 }
 
 function modificarColor(event){
+  let input = event.target;
 
   let item = carrito.findIndex((elemento)=>{
-    return `color-${elemento.id}` == event.target.id
+    return `color-${elemento.id}` == input.id
   })
-  console.log(item)
-  carrito[item].itemColor = event.target.value;
+
+  carrito[item].itemColor = input.value;
   sessionStorage.setItem("carrito", JSON.stringify(carrito));
   actualizarCarritoCompra()
 }
 
 function modificarSize(event){
+  let input = event.target;
 
   let item = carrito.findIndex((elemento)=>{
-    return `size-${elemento.id}` == event.target.id
+    return `size-${elemento.id}` == input.id
   })
-  console.log(item)
-  carrito[item].itemSize = event.target.value;
+
+  carrito[item].itemSize = input.value;
   sessionStorage.setItem("carrito", JSON.stringify(carrito));
   actualizarCarritoCompra()
 }
