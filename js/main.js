@@ -3,8 +3,8 @@ cargarProductos();
 
 function cargarProductos(){
   console.log(fetch("product.data.json")
-    .then(function (response) { console.log(response)})
-    .then(json => console.log(json)));
+    .then(response => response.json())
+    .then(json => mostrarProductos(json)));
 }
 
 function mostrarProductos(datos){
