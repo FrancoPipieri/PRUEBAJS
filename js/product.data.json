@@ -1,0 +1,16 @@
+[{
+    "img":"../img/Poscas.jpg",
+    "title":"Marker Uniposca",
+    "body":"Marcador UniPosca, diseñado a base de tinta al agua. Pinta sobre cualquier superficie, y es muy resistente a la luz. Tiene la punta de poliester y puede ser de varias medidas: 0.5mm, 0.7mm, 1.3mm, 2.5mm, 8mm, 15mm. Tienen una amplia gama de colores.",
+    "precio":1100
+},{
+    "img":"../img/Grog.jpg",
+    "title":"Squeezer Grog",
+    "body":"Squeezer Grog, diseñado para pintar sobre cualquier superficie, con tinta muy resistente a la luz, y de alto flujo, amplia variedad de tintas tanto a base de alcohol como de agua. Tienen punteras de tejido de alto rendimiento y tienen varias medidas:5mm, 10mm, 20mm, 25mm. Amplia gama de colores.",
+    "precio":1400
+},{
+    "img":"../img/Markal.jpg",
+    "title":"Crayon Markal",
+    "body":"Crayon Markal, la fórmula a base de pintura real tiene un rendimiento de marcaje superior en superficies aceitosas, heladas, húmedas, secas o frías, además de resistir los efectos de la intemperie y los rayos UV. Funciona en todas las superficies. Tiene un tamaño de 17mm. Amplia gama de colores.",
+    "precio":900
+}]
