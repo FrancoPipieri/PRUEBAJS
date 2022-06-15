@@ -73,12 +73,18 @@ header{
     flex-direction: column;
     justify-content: space-evenly;
 }
+.item-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 .valor{
     line-height: 1.5;
+    width: auto;
 }
 .boton{
     width: 30%;
-    margin-left: 65%;
+    margin-right: 10px;
     background-color: rgb(238, 203, 151);
     color: black;
 }

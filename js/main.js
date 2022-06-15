@@ -2,9 +2,9 @@ cargarProductos();
 
 
 function cargarProductos(){
-  console.log(fetch("product.data.json")
+  fetch("./js/data.json")
     .then(response => response.json())
-    .then(json => mostrarProductos(json)));
+    .then(json => mostrarProductos(json));
 }
 
 function mostrarProductos(datos){
@@ -21,34 +21,20 @@ function mostrarProductos(datos){
                           <h5 class="card-title p-1 item-title">${title}</h5>
                           <p class="card-text">${body}</p>
                           <div class="item-details">
-                            <h6 class="item-price valor">${precio}</h6>
+                            <h6 class="item-price valor">$ ${precio}</h6>
                             <button class="boton btn agregarACarrito">Agregar</button>
                           </div>
                         </div>`;
+
+      div.appendChild(card);
+    let agregarArticuloACarrito = document.querySelectorAll('.boton');
+    agregarArticuloACarrito.forEach((agregarACarrito) => {
+        agregarACarrito.addEventListener('click', agregarACarritoClicked);
+});
   })
 }
 
-class Item{
-  constructor(id,itemTitle,itemPrice,itemImage,itemQuantity,itemColor,itemSize){
-    this.id=id;
-    this.itemTitle=itemTitle;
-    this.itemPrice=itemPrice;
-    this.itemImage=itemImage;
-    this.itemQuantity=itemQuantity;
-    this.itemColor=itemColor;
-    this.itemSize=itemSize;
-  }
-}
-
-
 let carrito = JSON.parse(sessionStorage.getItem('carrito') || '[]')
-
-
-// Boton de seleccion
-const agregarArticuloACarrito = document.querySelectorAll('.agregarACarrito');
-agregarArticuloACarrito.forEach((agregarACarrito) => {
-  agregarACarrito.addEventListener('click', agregarACarritoClicked);
-});
 
 // Boton de Comprar
 const comprarButton = document.querySelector('.comprarButton');
